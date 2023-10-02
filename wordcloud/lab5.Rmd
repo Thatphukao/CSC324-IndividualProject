@@ -1,0 +1,11 @@
+---
+title: "Lab 5"
+author: "That Prommolmard"
+date: "2023-10-02"
+output: pdf_document
+---
+
+## Part 1: R & Shiny
+1. conditionalPanel is useful in situations where a visual element only needs to be shown in certain conditions. For example, there may be a panel that is used to adjust a scatter plot but not for histogram. In this case, we can set it so that the panel is only visible when the scatter plot is shown and disappear otherwise.
+2. The 3 main techniques used in debugging are: Debugging, Tracing, and Error Handling. Debugging is when you choose a breakpoint (either with Breakpoint in the IDE or with the R built-in browser()). This technique allows you to pause a program to inspect pipelines and variable, which is useful when a block of code isn't valid but you are not sure which part could cause problem. The second technique is similar in a way that you have to let the code run while you observe it. The difference is that the program isn't necessary halted. For example, Showcase Mode simply highlights what part of the code is being run. The third is error handling, which is a built-in system where an "expected" errors can be caught. Then, the type of errors can be assessed. For example, "Error in renderPlot: too many bins" might tells us that the input might be too long or there has been a mismatch in input sizes. 
+3. 
