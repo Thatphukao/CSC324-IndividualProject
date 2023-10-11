@@ -6,7 +6,7 @@ Welcome to the interactive Music Trends Analysis app. This application is design
 
 ### Rationale
 
-This project was initiated with the aim of offering insights into the dynamic world of music through a detailed analysis of genres and their popularity trends. Given the rich history of music and its impact on culture and society, a comprehensive yet straightforward tool was needed to explore these intricate dynamics. The Music Trends Analysis app serves as a basic yet effective resource for music enthusiasts and professionals alike to explore, analyze, and visualize the shifts in music preferences and the emergence of various genres over the years.
+This project was initiated with the aim of offering insights into the dynamic world of music through a detailed analysis of genres and their popularity trends. Given the rich history of music and its impact on culture and society, a simple and straightforward tool was needed to explore these intricate dynamics. The Music Trends Analysis app serves as a basic resource for music enthusiasts and professionals alike to explore, analyze, and visualize the shifts in music preferences and the emergence of various genres over the years.
 
 ### How to Run the App
 
@@ -23,7 +23,7 @@ install.packages(c("shiny", "shinythemes", "tm", "wordcloud", "RColorBrewer", "m
 
 ### What the App Does
 
-The Music Trends Analysis app visualizes the progression of different music genres over time, as depicted by data from the Billboard charts. It features an animated GIF that represents the genres' popularity trends and an interactive word cloud that displays common words associated with selected genres, allowing users to gain insights into the characteristics and lyrical themes that define each genre.
+The Music Trends Analysis app visualizes the progression of different music genres over time, as depicted by data from the Billboard charts. It features an animation that represents the genres' popularity trends and an interactive word cloud that displays common words associated with selected genres, allowing users to gain insights into the characteristics and lyrical themes that define each genre.
 
 #### Features
 
@@ -33,7 +33,8 @@ The Music Trends Analysis app visualizes the progression of different music genr
 
     ![Word Cloud](screenshots/wordcloudDemo.png)
 
-### Future Directions We aim to enhance the app's functionality and user experience with the following features in the upcoming versions:
+### Future Directions
+I aim to enhance the app's functionality and user experience with the following features in the upcoming versions:
 
 1.  **Extended Data Analysis:** Incorporate more granular data to offer detailed insights into sub-genres and their evolution.
 2.  **User Interactivity:** Enhance user engagement by allowing users to upload their datasets for personalized analysis.

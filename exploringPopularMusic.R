@@ -80,7 +80,7 @@ server <- function(input, output, session) {
     myCorpus <- tm_map(myCorpus, content_transformer(tolower))
     myCorpus <- tm_map(myCorpus, removePunctuation)
     myCorpus <- tm_map(myCorpus, removeNumbers)
-    myCorpus <- tm_map(myCorpus, removeWords, c(stopwords("en"), "the", "and", "Error: Could not find lyrics."))
+    myCorpus <- tm_map(myCorpus, removeWords, c(stopwords("en"), "the", "and", "Error: Could not find lyrics.", "nigga", "dont", "like", "just"))
     myDTM <- TermDocumentMatrix(myCorpus, control = list(minWordLength = 1))
     m <- as.matrix(myDTM)
     sort(rowSums(m), decreasing = TRUE)
