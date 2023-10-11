@@ -7,15 +7,18 @@ Welcome to the interactive Music Trends Analysis app, a tool designed to offer i
 
 This Shiny app is crafted to provide an intuitive and interactive experience for analyzing and visualizing music genre trends over the years, using data from the Billboard charts. It's a window into the musical landscape, offering insights into how different genres have risen or declined in popularity, painting a picture of our collective musical journey.
 
-### [Video Presenting the app](https://youtu.be/hCgg7U46_PE)
+### [Video Presenting the app](https://youtu.be/DYXQIWQycgs)
 
 ### Features
 
 -   **Genre Trends:** An animated GIF illustrating the progression of various music genres over time.
 ![Genre Trends](screenshots/genreDemo.png)
 
--   **Word Cloud:** A dynamic, interactive word cloud that visualizes the most frequent words associated with a selected genre. Users can adjust the number of words displayed and refresh the word cloud to explore different genres.
-![Word Cloud](screenshots/wordcloudDemo.png)
+-   **Lyrics Cloud:** A dynamic, interactive word cloud that visualizes the most frequent words associated with a selected genre. Users can adjust the number of words displayed and refresh the word cloud to explore different genres.
+![Lyrics Cloud](screenshots/wordcloudDemo.png)
+
+- **Song Lengths:** A histogram showing the amount of songs based on their lengths. User can toggle the "individual observation" to see how densely compacted the songs are at any given length, as well as adjust the bin size to see the shape of the distribution in finer details.
+![Song Lengths Histogram](screenshots/song-lengths.png)
 
 ### Data Description and Collection
 

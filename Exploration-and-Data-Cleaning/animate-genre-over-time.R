@@ -6,8 +6,8 @@ library(tidyr)
 library(lubridate)
 
 # Load and clean your dataset (replace 'billboardlyrics.csv' with your file)
-billboardGenre <- read.csv("billboardlyrics.csv")
-
+billboardGenre <- read.csv("Exploration-and-Data-Cleaning/billboardlyrics.csv")
+head(billboardGenre)
 billboardGenre <- billboardGenre[c("date", "year", "broad_genre", "loudness", "duration_ms", "lyrics")]
 billboardGenre <- billboardGenre %>%
   filter(!broad_genre %in% c("", "unknown"))  # Remove unknown and blank genres

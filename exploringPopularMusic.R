@@ -5,6 +5,7 @@ library(tm)
 library(wordcloud)
 library(RColorBrewer)
 library(memoise)
+library(ggplot2)
 
 # Data for different genres and corresponding file paths
 billboardData <- list("Country" = "countryLyrics.txt",
@@ -12,6 +13,8 @@ billboardData <- list("Country" = "countryLyrics.txt",
                       "Rap" = "rapLyrics.txt",
                       "Pop" = "popLyrics.txt",
                       "Rock" = "rockLyrics.txt")
+
+billboard <- read.csv("Exploration-and-Data-Cleaning/billboardCleaned.csv")
 
 # UI for the Shiny app
 ui <- fluidPage(
@@ -30,7 +33,7 @@ ui <- fluidPage(
              tags$br(),
              actionButton("resetGif", "Restart GIF")
     ),
-    tabPanel("Word Cloud",
+    tabPanel("Lyric Cloud",
              sidebarLayout(
                sidebarPanel(
                  selectInput("selection", "Choose a genre:", choices = names(billboardData)),
@@ -43,6 +46,16 @@ ui <- fluidPage(
                  plotOutput("plot")
                )
              )
+    ),
+    tabPanel("Song Duration",
+             selectInput(inputId = "n_breaks",
+                         label = "Number of bins in histogram (approximate):",
+                         choices = c(10, 20, 35, 50),
+                         selected = 20),
+             checkboxInput(inputId = "individual_obs",
+                           label = strong("Show individual observations"),
+                           value = FALSE),
+             plotOutput(outputId = "main_plot", height = "300px")
     )
   )
 )
@@ -80,7 +93,7 @@ server <- function(input, output, session) {
     myCorpus <- tm_map(myCorpus, content_transformer(tolower))
     myCorpus <- tm_map(myCorpus, removePunctuation)
     myCorpus <- tm_map(myCorpus, removeNumbers)
-    myCorpus <- tm_map(myCorpus, removeWords, c(stopwords("en"), "the", "and", "Error: Could not find lyrics.", "nigga", "dont", "like", "just"))
+    myCorpus <- tm_map(myCorpus, removeWords, c(stopwords("en"), "yeah", "the", "and", "Error: Could not find lyrics.", "nigga", "dont", "like", "just"))
     myDTM <- TermDocumentMatrix(myCorpus, control = list(minWordLength = 1))
     m <- as.matrix(myDTM)
     sort(rowSums(m), decreasing = TRUE)
@@ -99,6 +112,44 @@ server <- function(input, output, session) {
               min.freq = input$freq, max.words = input$max,
               colors = brewer.pal(8, "Dark2"))
   }, height = 550)
+  
+  # New code for Song Duration histogram
+  output$main_plot <- renderPlot({
+    
+    # Clean 'duration_ms' column: convert non-numeric values (including "unknown") to NA
+    billboard$duration_ms <- as.numeric(billboard$duration_ms)
+    
+    # Optional: remove rows with NA in 'duration_ms' (if you want to keep them, skip this line)
+    billboard <- billboard[!is.na(billboard$duration_ms), ]
+    # Extracting 'duration_ms' column and converting to minutes
+    song_lengths <- billboard$duration_ms / 1000 / 60 # convert ms to minutes
+    
+    # Create histogram
+    hist(song_lengths,
+         probability = TRUE,
+         breaks = as.numeric(input$n_breaks),
+         xlab = "Duration (minutes:seconds)",
+         main = "Song Lengths Duration",
+         xaxt = "n")  # Disable automatic x-axis labels because we'll add our own
+    
+    if (input$individual_obs) {
+      rug(song_lengths)
+    }
+    
+    # Calculate max value for song lengths, avoiding NA values
+    max_val <- max(song_lengths, na.rm = TRUE)
+    
+    # Customize x-axis labels to show in minutes:seconds format
+    axis(1, at = seq(0, max_val, by = 1), 
+         labels = sapply(seq(0, max_val, by = 1), 
+                         function(x) {
+                           mins <- floor(x)
+                           secs <- round((x - mins) * 60)
+                           sprintf("%d:%02d", mins, secs)
+                         }),
+         las = 2,  # Orientation of axis labels
+         cex.axis = 0.7)  # Font size for axis labels
+  })
 }
 
 # Run the Shiny app
