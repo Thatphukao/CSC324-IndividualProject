@@ -5,9 +5,6 @@ library(dplyr)
 library(tidyr)
 library(lubridate)
 
-theme_set(theme_minimal(base_size = 20))
-
-
 # Load and clean your dataset (replace 'billboardlyrics.csv' with your file)
 billboardGenre <- read.csv("billboardlyrics.csv")
 ``
@@ -43,12 +40,16 @@ genre_count_data <- genre_count_data %>%
   ungroup()
 
 # Plotting
-static_plot <- ggplot(data = genre_count_data, aes(x = cumulative_count, y = reorder(broad_genre, -cumulative_count), fill = broad_genre)) +
+static_plot <- ggplot(data = genre_count_data, 
+                      aes(x = cumulative_count, 
+                          y = reorder(broad_genre, -cumulative_count, order = TRUE), 
+                          fill = reorder(broad_genre, cumulative_count))) +
   geom_col() +
   labs(title = "Music Genre Popularity Over Time",
        x = "Cumulative Genre Count",
-       y = "Genre") +
-  theme_minimal()
+       y = "Genre",
+       fill = "Genre Name") +
+  theme_minimal(base_size = 50)
 
 # Animated Plot
 animated_plot <- static_plot +
@@ -67,10 +68,7 @@ animate(
   nframes = 400,  
   fps = 20,       
   width = 1500,    
-  height = 1500,   
+  height = 1000,   
   renderer = gifski_renderer("music_genre_animation.gif")
 )
-
-# Save the GIF
-anim_save("music_genre_animation.gif", animated_plot)
 
