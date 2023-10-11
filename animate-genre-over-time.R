@@ -7,7 +7,7 @@ library(lubridate)
 
 # Load and clean your dataset (replace 'billboardlyrics.csv' with your file)
 billboardGenre <- read.csv("billboardlyrics.csv")
-``
+
 billboardGenre <- billboardGenre[c("date", "year", "broad_genre", "loudness", "duration_ms", "lyrics")]
 billboardGenre <- billboardGenre %>%
   filter(!broad_genre %in% c("", "unknown"))  # Remove unknown and blank genres
@@ -69,6 +69,6 @@ animate(
   fps = 20,       
   width = 1500,    
   height = 1000,   
-  renderer = gifski_renderer("music_genre_animation.gif")
+  renderer = gifski_renderer("www/music_genre_animation.gif")
 )
 
