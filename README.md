@@ -83,6 +83,27 @@ I leveraged packages like **tm**, **wordcloud**, **RColorBrewer**, **shiny**, an
 
 Performance optimization was addressed by employing the **memoise** package, which facilitated the caching of computation results to boost the app's responsiveness.
 
+### Work Log
+
+My worklog is stored in a .csv file in work-log folder. I've visualized my work in 3 interesting ways:
+
+It looks like I've spent the most time implementing. This makes a lot of sense since I could be spent the whole hour trying to animate the bar graph. Researching coming up as second also makes a lot of sense since I had to learned how to implement javaScript into my code.
+![Types of Work](work-log/workTypes.png)
+
+This one is a timeline of my project, where you can see I started doing a lot of implementing towards the middle, then spend time researching, then goes back in implementing.
+![Work over time](work-log/totalWork.png)
+
+This heatmap definitely shows ab alternative look at what work is put into a given day. I definitely logged "debugging" during implementation as just implementation. You can also see how a period of implementation only starts after a period of researching.
+![Types of Work over time](work-log/heatmap.png)
+
+Finally, just a direct number of minutes spent on something.
+```
+> cat("Most time spent on:", workSummary$Category[1], "with", workSummary$TotalTime[1], "minutes.\n")
+Most time spent on: Implementing with 360 minutes.
+> cat("Least time spent on:", workSummary$Category[nrow(workSummary)], "with", workSummary$TotalTime[nrow(workSummary)], "minutes.")
+Least time spent on: Debugging with 210 minutes.
+```
+
 ### Reflection
 
 The integration of various R packages and a meticulous data cleaning process facilitated the creation of an intuitive and engaging app. Users can delve into a rich, interactive exploration of music trends, backed by clean, structured, and well-presented data. Future enhancements will focus on diversifying data sources, improving visualization, and expanding interactivity to cater to a broader audience and provide more profound insights into the world of music.
