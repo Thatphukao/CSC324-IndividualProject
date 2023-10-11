@@ -7,6 +7,8 @@ Welcome to the interactive Music Trends Analysis app, a tool designed to offer i
 
 This Shiny app is crafted to provide an intuitive and interactive experience for analyzing and visualizing music genre trends over the years, using data from the Billboard charts. It's a window into the musical landscape, offering insights into how different genres have risen or declined in popularity, painting a picture of our collective musical journey.
 
+### [Video Presenting the app](https://youtu.be/hCgg7U46_PE)
+
 ### Features
 
 -   **Genre Trends:** An animated GIF illustrating the progression of various music genres over time.
