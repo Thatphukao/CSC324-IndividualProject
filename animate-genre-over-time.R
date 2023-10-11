@@ -5,49 +5,72 @@ library(dplyr)
 library(tidyr)
 library(lubridate)
 
+theme_set(theme_minimal(base_size = 20))
+
+
 # Load and clean your dataset (replace 'billboardlyrics.csv' with your file)
 billboardGenre <- read.csv("billboardlyrics.csv")
-
-# Perform any data cleaning and transformation steps here
+``
 billboardGenre <- billboardGenre[c("date", "year", "broad_genre", "loudness", "duration_ms", "lyrics")]
+billboardGenre <- billboardGenre %>%
+  filter(!broad_genre %in% c("", "unknown"))  # Remove unknown and blank genres
+
 billboardGenre$year <- ifelse(is.na(billboardGenre$year), 2018, billboardGenre$year)
 billboardGenre$day <- day(mdy(billboardGenre$date))
 billboardGenre$month <- month(mdy(billboardGenre$date))
 
+complete_data <- expand.grid(
+  year = unique(billboardGenre$year),
+  month = unique(billboardGenre$month),
+  broad_genre = unique(billboardGenre$broad_genre)
+)
+
 # Group data by year and month, and count genres for each group
 genre_count_data <- billboardGenre %>%
   group_by(year, month, broad_genre) %>%
-  summarize(genre_count = n()) %>%
+  summarize(genre_count = n(), .groups = 'drop')
+
+# Merge with complete data to fill missing combinations with zero
+genre_count_data <- complete_data %>%
+  left_join(genre_count_data, by = c("year", "month", "broad_genre")) %>%
+  replace_na(list(genre_count = 0))
+
+# Calculate cumulative count for each genre over the months and years
+genre_count_data <- genre_count_data %>%
+  arrange(year, month, broad_genre) %>%
+  group_by(broad_genre) %>%
+  mutate(cumulative_count = cumsum(genre_count)) %>%
   ungroup()
 
-static_plot <- ggplot(data = genre_count_data, aes(x = month, y = genre_count, fill = broad_genre)) +
-  geom_bar(stat = "identity") +
+# Plotting
+static_plot <- ggplot(data = genre_count_data, aes(x = cumulative_count, y = reorder(broad_genre, -cumulative_count), fill = broad_genre)) +
+  geom_col() +
   labs(title = "Music Genre Popularity Over Time",
-       x = "Month",
-       y = "Genre Count") +
+       x = "Cumulative Genre Count",
+       y = "Genre") +
   theme_minimal()
 
+# Animated Plot
 animated_plot <- static_plot +
   transition_states(
-    states = paste(year, month),
+    states = paste(year, sprintf("%02d", month)),
     transition_length = 2,
     state_length = 1
   ) +
   enter_fade() +
-  exit_fade()
-library(gifski)
+  exit_fade() +
+  labs(caption = "Date: {closest_state}")
+
 # For GIF
 animate(
   animated_plot,
-  nframes = 200,  # Number of frames
-  fps = 20,       # Frames per second
-  width = 800,    # Width of the animation in pixels
-  height = 600,   # Height of the animation in pixels
+  nframes = 400,  
+  fps = 20,       
+  width = 1500,    
+  height = 1500,   
   renderer = gifski_renderer("music_genre_animation.gif")
 )
 
-# For GIF
+# Save the GIF
 anim_save("music_genre_animation.gif", animated_plot)
-
-
 
