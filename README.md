@@ -25,7 +25,7 @@ install.packages(c("shiny", "shinythemes", "tm", "wordcloud", "RColorBrewer", "m
 
 The Music Trends Analysis app visualizes the progression of different music genres over time, as depicted by data from the Billboard charts. It features an animation that represents the genres' popularity trends and an interactive word cloud that displays common words associated with selected genres, allowing users to gain insights into the characteristics and lyrical themes that define each genre.
 
-#### Features
+### Features
 
 -   **Genre Trends:** An animated GIF illustrating the progression of various music genres over time.![Genre Trends](screenshots/genreDemo.png)
 
