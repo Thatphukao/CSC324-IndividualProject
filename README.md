@@ -27,11 +27,11 @@ The Music Trends Analysis app visualizes the progression of different music genr
 
 #### Features
 
--   **Genre Trends:** An animated GIF illustrating the progression of various music genres over time.![Genre Trends](screenshots/genreDemo.png){width="313"}
+-   **Genre Trends:** An animated GIF illustrating the progression of various music genres over time.![Genre Trends](screenshots/genreDemo.png)
 
 -   **Word Cloud:** A dynamic, interactive word cloud that visualizes the most frequent words associated with a selected genre. Users can adjust the number of words displayed and refresh the word cloud to explore different genres.
 
-    ![Word Cloud](screenshots/wordcloudDemo.png){width="356"}
+    ![Word Cloud](screenshots/wordcloudDemo.png)
 
 ### Future Directions We aim to enhance the app's functionality and user experience with the following features in the upcoming versions:
 
