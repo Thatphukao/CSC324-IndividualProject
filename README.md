@@ -45,7 +45,7 @@ The process and development of the Music Trends Analysis app was an intricate jo
 
 #### Data Cleaning and Transformation
 
-The first crucial step was cleaning and transforming the raw data to make it suitable for analysis. We started with the billboard lyrics dataset, which was read into R using the `read.csv` function.
+The first crucial step was cleaning and transforming the raw data to make it suitable for analysis. I started with the billboard lyrics dataset, which was read into R using the `read.csv` function.
 
 ``` r
 billboard <- read.csv("wordcloud/billboardlyrics.csv")
@@ -53,7 +53,7 @@ billboard <- read.csv("wordcloud/billboardlyrics.csv")
 
 The **dplyr**, **stringr**, and **purrr** libraries played an integral role in the data cleaning process. The `dplyr` package facilitated data manipulation and transformation; `stringr` aided in string manipulation, and `purrr` was used for functional programming.
 
-We were particularly interested in specific genres, thus filtered the data accordingly. We defined a vector with genres of interest and then applied a function to filter the dataframe based on these genres. This was achieved through the combination of the `filter` and `map_lgl` functions.
+I was particularly interested in specific genres, thus filtered the data accordingly. I defined a vector with genres of interest and then applied a function to filter the dataframe based on these genres. This was achieved through the combination of the `filter` and `map_lgl` functions.
 
 ``` r
 genres_of_interest <- c('rock')
@@ -75,7 +75,7 @@ write.table(filtered_df$lyrics, "wordcloud/rockLyrics.txt", row.names = FALSE, c
 
 #### Visualization and Interactivity
 
-We leveraged packages like **tm**, **wordcloud**, **RColorBrewer**, **shiny**, and **shinythemes** to create an interactive and aesthetically pleasing user interface. The **tm** package was pivotal in text mining, while **wordcloud** and **RColorBrewer** enhanced the visualization aspects.
+I leveraged packages like **tm**, **wordcloud**, **RColorBrewer**, **shiny**, and **shinythemes** to create an interactive and aesthetically pleasing user interface. The **tm** package was pivotal in text mining, while **wordcloud** and **RColorBrewer** enhanced the visualization aspects.
 
 #### Caching and Optimization
 
