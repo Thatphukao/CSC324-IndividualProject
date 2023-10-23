@@ -128,18 +128,22 @@ server <- function(input, output, session) {
     hist(song_lengths,
          probability = TRUE,
          breaks = as.numeric(input$n_breaks),
-         xlab = "Duration (minutes:seconds)",
-         main = "Song Lengths Duration",
+         xlab = "",  # Temporarily remove xlab; we’ll add a better one later
+         main = "",  # Temporarily remove main title; we’ll add a better one later
          xaxt = "n")  # Disable automatic x-axis labels because we'll add our own
     
     if (input$individual_obs) {
       rug(song_lengths)
     }
     
-    # Calculate max value for song lengths, avoiding NA values
-    max_val <- max(song_lengths, na.rm = TRUE)
+    # Add improved labels and titles
+    title(main = "Distribution of Song Durations",
+          xlab = "Song Duration (minutes:seconds)",
+          col.main = "blue", col.lab = "black",  # Optional: change color of titles and labels
+          font.main = 4, font.lab = 3)  # Optional: change font style of titles and labels
     
     # Customize x-axis labels to show in minutes:seconds format
+    max_val <- max(song_lengths, na.rm = TRUE)
     axis(1, at = seq(0, max_val, by = 1), 
          labels = sapply(seq(0, max_val, by = 1), 
                          function(x) {
@@ -149,6 +153,13 @@ server <- function(input, output, session) {
                          }),
          las = 2,  # Orientation of axis labels
          cex.axis = 0.7)  # Font size for axis labels
+    
+    # Optional: Add annotations to highlight specific areas or points of interest
+    # Here, for example, we can highlight songs that are longer than 5 minutes
+    abline(v = 5, col = "red", lty = 2)  # Add a vertical line at x = 5 minutes
+    text(x = 5.5, y = max(par("usr")[3:4]) * 0.9, 
+         labels = "Songs > 5 mins", 
+         col = "red")  # Add text annotation to explain the red line
   })
 }
 

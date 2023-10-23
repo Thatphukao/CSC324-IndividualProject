@@ -118,6 +118,36 @@ The app employs a what-why-how framework, focusing on offering users (what) an i
 
 ### Sources and Credits
 
-Data Source: [Kevin Schaich's Billboard Project](https://github.com/kevinschaich/billboard/tree/master)
+The data for this project is sourced from Kevin Schaich's Billboard Project [1]. This rich dataset has been instrumental in offering a comprehensive perspective on the trends and patterns in the world of music, as captured through the Billboard charts over the years.
+
+The following R packages were pivotal in the development of the Music Trends Analysis App:
+
+dplyr, stringr, and purrr for data cleaning and transformation [2][3][4].
+tm for text mining, facilitating the creation of the interactive lyrics cloud feature [5].
+wordcloud and RColorBrewer for visualizing the lyrical themes associated with various music genres [6][7].
+shiny and shinythemes for developing the interactive web application interface [8][9].
+memoise for caching and performance optimization [10].
+Each of these packages played a crucial role in not only enhancing the app's functionality but also in ensuring a user-friendly, intuitive, and interactive user experience.
+
+References
+[1] K. Schaich, "Billboard Project," GitHub repository, [Online]. Available: https://github.com/kevinschaich/billboard/tree/master. [Accessed: Oct. 21, 2023].
+
+[2] H. Wickham, R. François, L. Henry, and K. Müller, "dplyr: A Grammar of Data Manipulation," R package version 1.0.7, 2021. [Online]. Available: https://CRAN.R-project.org/package=dplyr. [Accessed: Oct. 21, 2023].
+
+[3] H. Wickham, "stringr: Simple, Consistent Wrappers for Common String Operations," R package version 1.4.0, 2019. [Online]. Available: https://CRAN.R-project.org/package=stringr. [Accessed: Oct. 21, 2023].
+
+[4] L. Henry and H. Wickham, "purrr: Functional Programming Tools," R package version 0.3.4, 2020. [Online]. Available: https://CRAN.R-project.org/package=purrr. [Accessed: Oct. 21, 2023].
+
+[5] I. Feinerer and K. Hornik, "tm: Text Mining Package," R package version 0.7-8, 2020. [Online]. Available: https://CRAN.R-project.org/package=tm. [Accessed: Oct. 21, 2023].
+
+[6] I. Fellows, "wordcloud: Word Clouds," R package version 2.6, 2018. [Online]. Available: https://CRAN.R-project.org/package=wordcloud. [Accessed: Oct. 21, 2023].
+
+[7] E. Neuwirth, "RColorBrewer: ColorBrewer Palettes," R package version 1.1-2, 2014. [Online]. Available: https://CRAN.R-project.org/package=RColorBrewer. [Accessed: Oct. 21, 2023].
+
+[8] W. Chang, J. Cheng, J. Allaire, Y. Xie, and J. McPherson, "shiny: Web Application Framework for R," R package version 1.6.0, 2021. [Online]. Available: https://CRAN.R-project.org/package=shiny. [Accessed: Oct. 21, 2023].
+
+[9] "shinythemes: Themes for Shiny," R package version 1.2.0, 2021. [Online]. Available: https://CRAN.R-project.org/package=shinythemes. [Accessed: Oct. 21, 2023].
+
+[10] H. Wickham, "memoise: Memoisation of Functions," R package version 2.0.0, 2020. [Online]. Available: https://CRAN.R-project.org/package=memoise. [Accessed: Oct. 21, 2023].
 
 Feel free to explore the app and immerse yourself in the mesmerizing world of music trends analysis. Your insights, feedback, and contributions are highly valued as we seek to refine and enhance this tool for a richer musical exploration journey.
